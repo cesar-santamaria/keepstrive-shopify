@@ -1,6 +1,8 @@
 <header class="header items-center py-2">
   <div class="header-menu-nav">
-
+    <button class="flex md:hidden">
+      {% render 'icon-hamburger', class: 'w-10 ml-3' %}
+    </button>
     <div class="header-menu hidden md:ml-2 md:flex md:space-x-4 ">
       {% for link in section.settings.menu.links %}
         <a href="{{link.url}}">{{link.title}}</a>
