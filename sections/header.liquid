@@ -21,7 +21,11 @@
   </div>
   <div class="header-icons flex justify-end mr-2 md:mr-8">
     <div class="icon-container flex space-x-6 md:space-x-10">
-      {% render 'icon-account', class: "h-4 md:h-6" %}
+      {%- if shop.customer_accounts_enabled -%}
+      <a href="{{ routes.account_url }}" title="account link">
+        {% render 'icon-account', class: "h-4 md:h-6" %}
+      </a>
+      {%- endif -%}
       {% render 'icon-cart', class: "h-4 md:h-6" %}
     </div>
   </div>
