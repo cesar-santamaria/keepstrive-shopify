@@ -1,21 +1,27 @@
 <header class="header items-center py-2">
-  <div class="header-menu hidden md:ml-2 md:flex md:space-x-4 ">
-    {% for link in section.settings.menu.links %}
-      <a href="{{link.url}}">{{link.title}}</a>
-    {% endfor %}
+  <div class="header-menu-nav">
+
+    <div class="header-menu hidden md:ml-2 md:flex md:space-x-4 ">
+      {% for link in section.settings.menu.links %}
+        <a href="{{link.url}}">{{link.title}}</a>
+      {% endfor %}
+    </div>
   </div>
   <div class="header-logo flex justify-{{section.settings.logo_position}}">
     {% if section.settings.logo != blank %}
     {% assign image_size = section.settings.logo_width %}
-        <a href="/" style="max-width: {{section.settings.logo_width}}px"> 
-        <img src="{{section.settings.logo | img_url: 'master'}}" alt="company logo">
+        <a class="mr-1 md:mr-0" href="/" style="max-width: {{section.settings.logo_width}}px"> 
+        <img  src="{{section.settings.logo | img_url: 'master'}}" alt="company logo">
         </a>
       {% else %}
         <a href="/" style="max-width: 170px;"> {{ shop.name }} </a> 
     {% endif %}
   </div>
-  <div class="header-icons text-right md:mr-2">
-    icons
+  <div class="header-icons flex justify-end mr-2 md:mr-8">
+    <div class="icon-container flex space-x-6 md:space-x-10">
+      {% render 'icon-account', class: "h-4 md:h-6" %}
+      {% render 'icon-cart', class: "h-4 md:h-6" %}
+    </div>
   </div>
 </header>
 
