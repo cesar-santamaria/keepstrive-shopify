@@ -24,6 +24,15 @@
       {%- if shop.customer_accounts_enabled -%}
       <a href="{{ routes.account_url }}" title="account link">
         {% render 'icon-account', class: "h-4 md:h-6" %}
+        <span class="sr-only">
+          {%- liquid
+            if customer
+              echo 'customer.account_fallback' | t
+            else
+              echo 'customer.account_fallback' | t
+            endif
+          -%}
+        </span>
       </a>
       {%- endif -%}
       {% render 'icon-cart', class: "h-4 md:h-6" %}
