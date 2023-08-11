@@ -21,4 +21,24 @@ $btn-height: 44px;
     .header-icons{
         grid-area: header-icons;
     }
+
+    @media (max-width: 768px) {
+        grid-template-areas: "header-menu header-logo header-icons";
+    }
+     // Hover Sub Menu Links
+     .nav__item{
+        &:hover{
+            .nav__item-submenu{
+                display: block;
+            }
+        }
+
+        .nav__item-submenu{
+            display: none;
+        }
+    }
+
+    
 }
+
+
