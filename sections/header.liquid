@@ -1,7 +1,7 @@
 <header class="header items-center py-2">
   
-  <div class="header-menu-nav flex">
-    <button class="flex md:hidden">
+  <div class="header-menu-nav flex x-data">
+    <button class="flex md:hidden" @click="$dispatch('toggle-menu')">
       {% render 'icon-hamburger', class: 'w-10 ml-3' %}
     </button>
 
@@ -60,7 +60,9 @@
       </button>
     </div>
   </div>
-</header>
+  </header>
+
+  {% render 'mobile-menu' %}
 
 
 
