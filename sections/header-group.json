@@ -25,8 +25,11 @@
       "type": "header",
       "settings": {
         "logo": "shopify:\/\/shop_images\/keepstrive_93bfb5ce-1b27-4336-a411-aaaa4d065292.png",
+        "logo-mobile-menu": "shopify:\/\/shop_images\/Keepstrive_badge.png",
         "logo_width": 170,
+        "logo_badge_width": 60,
         "logo_position": "center",
+        "logo_badge_position": "start",
         "menu": "main-menu"
       }
     }

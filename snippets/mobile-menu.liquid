@@ -54,10 +54,10 @@
 
         <div class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
           {% if section.settings.logo != blank %}
-            <div class="flex justify-{{section.settings.logo_badge_position}}">
+            <div class="flex justify-{{ section.settings.logo_badge_position }}">
               <img
                 class="px-4"
-                src="{{ section.settings.logo-badge | image_url }}"
+                src="{{ section.settings.logo-mobile-menu | img_url: 'master' }}"
                 alt="company logo"
                 width="auto"
                 height="auto"
