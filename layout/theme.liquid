@@ -229,21 +229,17 @@
         font-weight: var(--font-body-weight);
         z-index: 10;
       }
+
     {% endstyle %}
 
-    {{ 'app.css' | asset_url | stylesheet_tag: preload: true }}
-    <script src="{{"app.js" | asset_url }}" defer></script>
+    {{ 'app.css' | asset_url | stylesheet_tag }}
+    <script src="{{"app.js" | asset_url}}"></script>
 
     {%- unless settings.type_body_font.system? -%}
-      <link
-        as="font"
-        href="{{ settings.type_body_font | font_url: preload: true }}"
-        type="font/woff2"
-        crossorigin
-      >
+      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
-      <link as="font" href="{{ settings.type_header_font | font_url: preload: true }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
