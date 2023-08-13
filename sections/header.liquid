@@ -1,5 +1,4 @@
 <header class="header items-center py-2">
-  
   <div class="header-menu-nav flex x-data">
     <button class="flex md:hidden" @click="$dispatch('toggle-menu')">
       {% render 'icon-hamburger', class: 'w-10 ml-3' %}
@@ -8,20 +7,20 @@
     <ul class="header__menu-nav hidden md:flex z-10">
       {% for link in section.settings.menu.links %}
         {% if link.links != blank %}
-          <li class="nav__item py-4 px-4 block relative"> 
-            <a href="{{ link.url }}"> {{link.title}} </a> 
-          <ul class="nav__item-submenu absolute bg-gray-50 rounded py-2 px-5 transform">
-            {% for sublink in linklists[link.handle].links %}
-              <li>
-                <a class="block py-1 hover:text-black" href="{{ sublink.url }}"> {{ sublink.title }} </a>
-              </li>
-            {% endfor %}
-          </ul>
+          <li class="nav__item py-4 px-4 block relative">
+            <a href="{{ link.url }}"> {{ link.title }} </a>
+            <ul class="nav__item-submenu absolute bg-gray-50 rounded py-2 px-5 transform">
+              {% for sublink in linklists[link.handle].links %}
+                <li>
+                  <a class="block py-1 hover:text-black" href="{{ sublink.url }}"> {{ sublink.title }} </a>
+                </li>
+              {% endfor %}
+            </ul>
           </li>
-          {% else %}
-            <li>
-              <a class="nav__item py-4 px-4 block hover:text-black" href="{{ link.url }}"> {{ link.title }} </a>
-            </li>
+        {% else %}
+          <li>
+            <a class="nav__item py-4 px-4 block hover:text-black" href="{{ link.url }}"> {{ link.title }} </a>
+          </li>
         {% endif %}
       {% endfor %}
     </ul>
@@ -29,41 +28,39 @@
 
   <div class="header-logo flex justify-{{section.settings.logo_position}}">
     {% if section.settings.logo != blank %}
-        <a class="mr-1 md:mr-0" href="/" style="max-width: {{section.settings.logo_width}}px"> 
-        <img  src="{{section.settings.logo | img_url: 'master'}}" alt="company logo">
-        </a>
-      {% else %}
-        <a href="/" style="max-width: 170px;"> {{ shop.name }} </a> 
+      <a class="mr-1 md:mr-0" href="/" style="max-width: {{ section.settings.logo_width }}px">
+        <img src="{{section.settings.logo | image_url: 'master' }}" width height loading="lazy" alt="company logo">
+      </a>
+    {% else %}
+      <a href="/" style="max-width: 170px;"> {{ shop.name }} </a>
     {% endif %}
   </div>
-  
+
   <div class="header-icons flex justify-end mr-2 md:mr-8">
     <div class="icon-container flex space-x-6 md:space-x-10">
       {%- if shop.customer_accounts_enabled -%}
-      <a href="{{ routes.account_url }}" title="account link">
-        {% render 'icon-account', class: "h-4 md:h-6" %}
-        <span class="sr-only">
-          {%- liquid
-            if customer
-              echo 'customer.account_fallback' | t
-            else
-              echo 'customer.account_fallback' | t
-            endif
-          -%}
-        </span>
-      </a>
+        <a href="{{ routes.account_url }}" title="account link">
+          {% render 'icon-account', class: 'h-4 md:h-6' %}
+          <span class="sr-only">
+            {%- liquid
+              if customer
+                echo 'customer.account_fallback' | t
+              else
+                echo 'customer.account_fallback' | t
+              endif
+            -%}
+          </span>
+        </a>
       {%- endif -%}
       <button type="button" title="Cart button">
-        {% render 'icon-cart', class: "h-4 md:h-6" %}
-        <span class="sr-only"> {{ "templates.cart.cart" | t }} </span>
+        {% render 'icon-cart', class: 'h-4 md:h-6' %}
+        <span class="sr-only"> {{ 'templates.cart.cart' | t }} </span>
       </button>
     </div>
   </div>
-  </header>
+</header>
 
-  {% render 'mobile-menu' %}
-
-
+{% render 'mobile-menu' %}
 
 <!-- shopify Config -->
 <script type="application/ld+json">
@@ -90,7 +87,7 @@
 </script>
 
 {%- if request.page_type == 'index' -%}
-  {% assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" %}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -107,86 +104,86 @@
 {%- endif -%}
 
 {% schema %}
-  {
-    "name": "t:sections.header.name",
-    "class": "section-header",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo Image"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo-badge",
-        "label": "Logo badge"
-      },
-      {
-        "type": "range",
-        "id": "logo_width",
-        "min": 50,
-        "max": 250,
-        "step": 10,
-        "default": 100,
-        "unit": "px",
-        "label": "Logo Width"
-      },
-      {
-        "type": "range",
-        "id": "logo_badge_width",
-        "min": 10,
-        "max": 100,
-        "step": 10,
-        "default": 100,
-        "unit": "px",
-        "label": "Logo Badge Width"
-      },
-      {
-        "type": "select",
-        "id": "logo_position",
-        "options": [
-          {
-            "value": "start",
-            "label": "left"
-          },
-          {
-            "value": "center",
-            "label": "center"
-          },
-          {
-            "value": "end",
-            "label": "right"
-          }
-        ],
-        "default": "center",
-        "label": "Logo Position"
-      },
-      {
-        "type": "select",
-        "id": "logo_badge_position",
-        "options": [
-          {
-            "value": "start",
-            "label": "left"
-          },
-          {
-            "value": "center",
-            "label": "center"
-          },
-          {
-            "value": "end",
-            "label": "right"
-          }
-        ],
-        "default": "center",
-        "label": "Logo Badge Position"
-      },
-      {
-        "type": "link_list",
-        "id": "menu",
-        "default": "main-menu",
-        "label": "Menu Item"
-      }
-    ]
-  }
-  {% endschema %}
+{
+  "name": "t:sections.header.name",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-badge",
+      "label": "Logo badge"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "Logo Width"
+    },
+    {
+      "type": "range",
+      "id": "logo_badge_width",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "Logo Badge Width"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "start",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "end",
+          "label": "right"
+        }
+      ],
+      "default": "center",
+      "label": "Logo Position"
+    },
+    {
+      "type": "select",
+      "id": "logo_badge_position",
+      "options": [
+        {
+          "value": "start",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "end",
+          "label": "right"
+        }
+      ],
+      "default": "center",
+      "label": "Logo Badge Position"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu Item"
+    }
+  ]
+}
+{% endschema %}
