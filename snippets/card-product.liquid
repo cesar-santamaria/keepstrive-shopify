@@ -37,22 +37,16 @@
           {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {% endif %}
-      <h3 class="card__title p-2">
+      <h3 class="card__title p-2 text-black">
         {{ card_product.title }}
       </h3>
+      {% render '_price-element', product: card_product %}
     </div>
   </div>
 {%- else -%}
   <div class="card-wrapper underline-links-hover">
     <div
-      class="
-        card
-        card--{{ settings.card_style }}
-        card--text
-        {% if extend_height %} card--extend-height{% endif %}
-        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }}{% endif %}
-        {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
-      "
+      class=""
       style="--ratio-percent: 100%;"
     >
       <div
