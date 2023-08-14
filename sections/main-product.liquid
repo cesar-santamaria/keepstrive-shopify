@@ -40,15 +40,7 @@
   <div class="product grid grid-cols-3 gap-6 mt-6">
     <div class="product__media-wrapper col-span-2 grid grid-cols-2 gap-3">
       {% for media in product.media %}
-        {% if media.media_type == 'image' %}
-          <div class="media_wrapper {% if forloop.first %} col-span-2 {% endif %}">
-            {{ media | image_url: width: 1600 | image_tag: loading: 'lazy' }}
-          </div>
-        {% endif %}
-
-        {% if media.media_type == 'video' %}
-          <video src="{{ media.url }}" controls muted></video>
-        {% endif %}
+        {% render 'media', media: media %}
       {% endfor %}
     </div>
 
