@@ -25,10 +25,9 @@
         <a class="card_image" href="{{ card_product.url }}">
           {{ card_product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', class: image_class }}
           {% if card_product.media[1] != blank and show_secondary_image %}
-            {{ product | json }}
             {{
               card_product.media[1]
-              | image_url: card_product.url, width: 900
+              | image_url: width: 900
               | image_tag: loading: 'lazy', class: 'hidden group-hover:block'
             }}
           {% endif %}
